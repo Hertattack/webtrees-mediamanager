@@ -1,0 +1,44 @@
+{
+    "name": "hertattack/webtrees-mediamanager",
+    "description": "Media Manager for Webtrees",
+    "keywords": [
+        "webtrees",
+        "media"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hertattack\\Webtrees\\Module\\MediaManager\\": "module/"
+        },
+        "files": [
+            "module/lib/supportingFunctions.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.1.2"
+        },
+        "sort-packages": true,
+        "process-timeout": 3600
+    },
+    "require": {
+        "php": "8.1 - 8.3",
+        "ext-xdebug": "*"
+    },
+    "require-dev": {
+        "psr/http-message": "1.1",
+        "psr/http-server-handler": "1.0.2",
+        "psr/http-server-middleware": "1.0.2"
+    },
+    "suggest": {
+        "ext-imagick": "Required to generate thumbnail images"
+    },
+    "scripts": {
+    },
+    "scripts-descriptions": {
+    }
+}

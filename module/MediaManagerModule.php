@@ -22,7 +22,7 @@ class MediaManagerModule extends AbstractModule implements
 
     public function title(): string
     {
-        return I18N::translate("Manage Media, Maikel's Module ;-)");
+        return I18N::translate("Media Manager");
     }
 
     public function description(): string
