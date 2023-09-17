@@ -8,8 +8,11 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
+use Fisharebest\Webtrees\Services\MediaFileService;
 use Fisharebest\Webtrees\View;
 
+use Hertattack\Webtrees\Module\MediaManager\pages\MediaManagerPage;
+use Illuminate\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -19,6 +22,13 @@ class MediaManagerModule extends AbstractModule implements
 {
     use ModuleCustomTrait;
     use ModuleConfigTrait;
+
+    private MediaFileService $mediaFileService;
+
+    public function __construct(MediaFileService $mediaFileService)
+    {
+        $this->mediaFileService = $mediaFileService;
+    }
 
     public function title(): string
     {
@@ -38,16 +48,23 @@ class MediaManagerModule extends AbstractModule implements
     public function boot(): void
     {
         View::registerNamespace($this->name(), $this->resourcesFolder() . 'views/');
-        View::registerCustomView('::admin/manage-media', $this->name() . '::admin/manage-media');
+    //    View::registerCustomView('::admin/manage-media', $this->name() . '::admin/manage-media');
+
+    //    Container::getInstance()->bind(MediaManagerPage::class, MediaManagerPage::class);
     }
     
     public function getAdminAction(ServerRequestInterface $request): ResponseInterface
     {
-        $this->layout = 'layouts/administration';
+//        $this->layout = 'layouts/administration';
+//
+//        return $this->viewResponse('admin/manage-media', [
+//            'title' => $this->title()
+//        ]);
 
-        return $this->viewResponse('admin/manage-media', [
-            'title' => $this->title()
-        ]);
+        $page = new MediaManagerPage($this->mediaFileService);
+        return $page->handle($request);
+
+        //return redirect(route(MediaManagerPage::class));
     }
 
     public function isEnabledByDefault(): bool
