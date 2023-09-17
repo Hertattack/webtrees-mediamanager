@@ -2,10 +2,18 @@
 
 declare(strict_types=1);
 
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\I18N;
+
+/**
+ * @var string $title
+ */
+
 ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+
 <div class="row mb-3">
     Hello World!
 
-    <?php
-    xdebug_info(); ?>
+    <?php xdebug_info(); ?>
 </div>

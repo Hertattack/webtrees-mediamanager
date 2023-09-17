@@ -11,15 +11,8 @@ declare(strict_types=1);
 
 namespace Hertattack\Webtrees\Module\MediaManager;
 
-use Fisharebest\Webtrees\Services\MediaFileService;
-use Illuminate\Container\Container;
+require_once __DIR__ . '/Bootstrap.php';
 
-require __DIR__ . "/MediaManagerModule.php";
-require __DIR__ . "/pages/MediaManagerPage.php";
+$bootstrap = Bootstrap::Boostrap();
 
-
-$container = Container::getInstance();
-
-return new MediaManagerModule(
-    $container->get(MediaFileService::class)
-);
+return $bootstrap->module;

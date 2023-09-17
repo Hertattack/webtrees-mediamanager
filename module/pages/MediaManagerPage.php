@@ -37,14 +37,18 @@ class MediaManagerPage implements RequestHandlerInterface
 
         $title = I18N::translate('Manage media');
 
-        return $this->viewResponse('admin/media', [
-            'data_folder'   => $data_filesystem_name,
-            'files'         => $files,
-            'media_folder'  => $media_folder,
-            'media_folders' => $media_folders,
-            'media_types'   => $media_types,
-            'subfolders'    => $subfolders,
-            'title'         => $title,
+//        return $this->viewResponse('admin/media', [
+//            'data_folder'   => $data_filesystem_name,
+//            'files'         => $files,
+//            'media_folder'  => $media_folder,
+//            'media_folders' => $media_folders,
+//            'media_types'   => $media_types,
+//            'subfolders'    => $subfolders,
+//            'title'         => $title,
+//        ]);
+
+        return $this->viewResponse('admin/manage-media', [
+            'title' => 'Manage Media'
         ]);
     }
 }
