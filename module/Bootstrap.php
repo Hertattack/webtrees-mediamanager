@@ -3,11 +3,13 @@
 namespace Hertattack\Webtrees\Module\MediaManager;
 
 require_all_once("/lib/*.php");
+require_all_once("/model/*.php");
 require_once __DIR__ . "/MediaManagerServices.php";
 require_once __DIR__ . "/MediaManagerModule.php";
 require_all_once('/pages/*.php');
 
 use Illuminate\Container\Container;
+use Intervention\Image\ImageManager;
 
 class Bootstrap
 {

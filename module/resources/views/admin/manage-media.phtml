@@ -4,9 +4,17 @@ declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
+use Hertattack\Webtrees\Module\MediaManager\model\ImageFile;
+use Illuminate\Support\Collection;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
 
 /**
  * @var string $title
+ * @var Collection $mediaFolders
+ * @var Collection $filesOnDisk
+ * @var ImageManager $imageManager
+ * @var ImageFile $imageFile
  */
 
 ?>
@@ -14,6 +22,12 @@ use Fisharebest\Webtrees\I18N;
 
 <div class="row mb-3">
     Hello World!
-
-    <?php xdebug_info(); ?>
+    <--?php print($mediaFolders["media/"]) ?>
+    <?php print($mediaFolders->values()) ?>
+    <?php print($filesOnDisk) ?>
+    Width:
+    <?php
+        print($imageFile->image->width());
+    ?>
+    Size: <?= $imageFile->fileSize ?>
 </div>

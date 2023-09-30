@@ -12,7 +12,7 @@ use Fisharebest\Webtrees\Services\MediaFileService;
 use Fisharebest\Webtrees\View;
 
 use Hertattack\Webtrees\Module\MediaManager\pages\MediaManagerPage;
-use Illuminate\Container\Container;
+use Intervention\Image\ImageManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -25,11 +25,13 @@ class MediaManagerModule extends AbstractModule implements
 
     private MediaFileService $mediaFileService;
     private MediaManagerServices $mediaManagerServices;
+    private ImageManager $imageManager;
 
     public function __construct(MediaManagerServices $services)
     {
         $this->mediaManagerServices = $services;
         $this->mediaFileService = $services->mediaFileService;
+        $this->imageManager = $services->imageManager;
     }
 
     public function title(): string
@@ -55,7 +57,7 @@ class MediaManagerModule extends AbstractModule implements
     
     public function getAdminAction(ServerRequestInterface $request): ResponseInterface
     {
-        $page = new MediaManagerPage($this->mediaFileService);
+        $page = new MediaManagerPage($this->mediaFileService, $this->imageManager);
         return $page->handle($request);
     }
 
